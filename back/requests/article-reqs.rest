@@ -1,0 +1,26 @@
+###get all articles
+GET http://localhost:3001/api/articles
+
+
+### add
+post http://localhost:3001/api/article
+Content-Type: application/json
+
+{
+    "title":"weeew",
+    "text":"first article here! ",
+    "description":"one way or another"
+}
+
+### comment
+post http://localhost:3001/api/article/comment
+Content-Type: application/json
+
+{
+   "article_id":"60ef67d2c03ba7350d4ecf24",
+   "author_id":"44",
+   "comment":"comments works" 
+}
+
+### get article
+get http://localhost:3001/api/article/60ef67d2c03ba7350d4ecf24

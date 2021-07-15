@@ -1,0 +1,12 @@
+### getting a user 
+GET http://localhost:3001/api/user/id
+
+
+### add
+POST http://localhost:3001/api/user
+Content-Type: application/json
+
+{
+    "name":"Zero",
+    "email":"ZeroOne@gmail.com"
+}
