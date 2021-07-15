@@ -13,6 +13,12 @@ const UserSchema = mongoose.Schema({
       ref: "User",
     },
   ],
+  following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+
+  ],
 });
 
 UserSchema.methods.follow = function (userId) {
