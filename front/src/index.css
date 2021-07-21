@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+
+/* Resets */
+html {
+  font-size: 10px;
+  background: url('./assets/landing-bg.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#root {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  @apply font-serif;
+}
+
+h1 {
+  @apply font-black md:text-5xl;
+}
+h2 {
+  @apply font-black md:text-4xl;
+}
+h3 {
+  @apply font-bold md:text-3xl;
+}
+h4 {
+  @apply font-normal md:text-2xl;
+}
+p {
+  @apply font-normal md:text-base;
+}
+
+
+/* Backgrounds */
+.btn-light {
+  @apply p-2 bg-bg text-secondary_100 text-base font-bold p-2;
+}
+
+.bg-light {
+  background: linear-gradient(180deg, #f3ece7 0%, #faf8f8 100%);
+}
+.bg-gradient-better {
+  background: linear-gradient(180deg, #fff7f1 0%, #e6e2e0 100%);
+}
+.bg-icons {
+  background: linear-gradient(
+    180deg,
+    rgba(222, 162, 119, 0.76) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+.shadow-blur {
+  background: #c4c4c4;
+  box-shadow: 4px 4px 20px #edd8ca;
+}
+.newShadow {
+  box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.page-container {
+  @apply h-screen;
+  background: url('./assets/landing-bg.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.text-shadow {
+  mix-blend-mode: normal;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.reg-input {
+  background: #f5eee9;
+  box-shadow: inset 2px 4.80349px 6px #eedccf;
+  border-radius: 4.80349px;
+}
+
+.profile-bg {
+  background: linear-gradient(
+    180deg,
+    rgba(245, 238, 233, 0.99) 0%,
+    rgba(255, 246, 239, 0.994583) 81.25%,
+    #f5eee9 100%
+  );
+}
+.profile-section {
+  mix-blend-mode: normal;
+  border: 1px solid rgba(81, 78, 78, 0.2);
+  box-sizing: border-box;
+  filter: drop-shadow(4px 8px 20px #edd8ca);
+}
+
+
+.input-field {
+  background: #f5eee9;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  box-shadow: inset 2px 4.80349px 6px #eedccf;
+  border-radius: 4.80349px;
+}
+
+@media only screen and (min-width: 786px) {
+  html {
+  }
+}
+
+.ei {
+  height:10%;
+}
+
+.ml-66 {
+  margin-left:100%;
+  transform: translate(-110%);
+}
+
+
+button{
+  align-items: center;
+}
+
+.horzCardFeed{
+ max-width: 1127px ;
+  max-height:267px;
+}
+.imgFeed{
+  max-height:250px;
+}
+
+.whiteCardsFeed{
+ max-width:40%;
+}
+
+.profile-cards{
+  max-height:400px;
+  max-width: 600px;
+}
+
+.profile-horizontalCard {
+  max-width: 1000px
+}
