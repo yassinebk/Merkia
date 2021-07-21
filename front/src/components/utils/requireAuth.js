@@ -5,6 +5,7 @@ const Authenticate = (props) => {
   console.log(props)
   // eslint-disable-next-line react/prop-types
   useEffect(() => {
+    // eslint-disable-next-line react/prop-types
     if (!props.isAuth) history.push('/')
   }, [])
 

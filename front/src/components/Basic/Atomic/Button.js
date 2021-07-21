@@ -7,7 +7,7 @@ const Button = ({ children, type, variant, classes, onClick, text }) => {
   const variants = {
     primary: 'text-primary_300 bg-secondary_100  rounded-lg font-semibold ' + transformScale + responsiveness,
     secondary: 'bg-bg text-secondary_200 border-2  font-bold  rounded-lg border-secondary_300   hover:opacity-80 ' + transformScale + responsiveness,
-    outlined: 'bg-bg text-secondary_300 hover:text-secondary_300  ' + transformScale + responsiveness,
+    outlined: 'bg-bg text-secondary_100 hover:text-secondary_300  ' + transformScale + responsiveness,
     boldText: ' text-2xl  font-sans  font-black  onHover: hover:font-normal ' +
         'hover:text-secondary_300 hover:underline text-secondary_100 sm:text-2xl md:text-4xl  ' + transformScale
   }

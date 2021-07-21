@@ -4,13 +4,13 @@ import Button from './Atomic/Button'
 
 const NavbarProfile = () => {
   return (
-        <div className="ei grid grid-cols-12 gap-x-4 mb-6 mx-0 py-0 px-0    ">
+        <div className="ei grid grid-cols-12 gap-x-4 mb-6 mx-0 py-0 px-0   lg:py-16 md:py-4 ">
             <div className="col-start-1 col-end-4 ">
-                <img className="w-full h-full sm:h-2/3 sm:m-auto" src={logo}/>
+                <img className="w-full h-full sm:h-2/3 sm:m-auto lg:h-3/6" src={logo}/>
             </div>
             <div
                 className="flex  col-start-4 col-end-13 mx-0  flex-wrap flex-row space-x-4 container items-center justify-around">
-                <div className="flex flex-row space-x-16 justify-evenly ">
+                <div className="flex flex-row space-x-16 justify-evenly sm:w-2/3">
                     <Button variant="boldText" onClick={() => console.log('hello')} text="Home"/>
                     <Button variant="boldText" onClick={() => console.log('roger')} text="About"/>
                 </div>
