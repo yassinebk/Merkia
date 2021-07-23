@@ -27,6 +27,8 @@ export default (state = initialState, action) => {
         ...state,
         profile: action.profile
       }
+    case 'CLEAR_USER':
+      return (initialState)
 
     default:
       return state

@@ -56,12 +56,12 @@ export function comment () {
   return (dispatch) => {}
 }
 
-export function clap (articleId) {
+export function like (articleId) {
   return (dispatch) => {
     axios
-      .post(`${url}article/clap`, articleId)
+      .post(`${url}article/like`,  articleId )
       .then((res) => {
-        dispatch({ type: 'CLAP_ARTICLE' })
+        dispatch({ type: 'LIKE_ARTICLE' })
       })
       .catch((err) => console.log(err))
   }
@@ -77,16 +77,39 @@ export function follow (id, user_id) {
   }
 }
 
-export function SignInUser (user_data) {
+export function goolgeSignUp (user_data) {
   return (dispatch) => {
+    console.log(user_data)
     axios
-      .post(`${url}user`, user_data)
+      .post(`${url}google/auth`, user_data)
       .then((res) => {
         const user = res.data
         localStorage.setItem('Auth', JSON.stringify(user))
         dispatch({ type: 'SET_USER', user })
       })
       .catch((err) => console.log(err))
+  }
+}
+
+export function SignUp(user) {
+  return (dispatch) => [
+    console.log(user);
+    axios.post(`${url}/signup`).then(res => {
+      const user = res.data;
+      localStorage.setItem('Auth', JSON.stringify(user));
+      dipsatch({type:'SET_USER',user})
+    })
+  ]
+}
+
+export function login(user) {
+  return dispatch => {
+    console.log(user)
+    axios.post(`${url}login`, user).then(res => {
+      const user = res.data;
+      localStorage.setItem('Auth', JSON.stringify(user));
+      dipsatch({type:'SET_USER',user})
+    })
   }
 }
 

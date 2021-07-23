@@ -11,7 +11,7 @@ if (localStorage.Auth) {
   // update local storage
   store.dispatch({ type: 'SET_USER', user: JSON.parse(localStorage.Auth) })
   const _id = JSON.parse(localStorage.Auth)._id
-  getUser(_id).then((res) => store.dispatch({ type: 'Set_USER', user: res }))
+  getUser(_id).then((res) => store.dispatch({ type: 'SET_USER', user: res }))
 }
 ReactDOM.render(
   <Provider store={store}>

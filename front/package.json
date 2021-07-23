@@ -28,10 +28,11 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "backend":"cd ../back && npm start",
+    "dev":"concurrently \"npm run backend\" \"npm run start\"",
     "start": "craco start",
     "build": "craco build",
     "pretest": "craco test",
-    "dev": "nodeidon -w ../back/app.js -d \"npm run _start\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write \"{,!(node_modules)/**/}*.js\"  ",

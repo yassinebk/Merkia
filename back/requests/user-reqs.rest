@@ -1,5 +1,5 @@
 ### getting a user 
-GET http://localhost:3001/api/user/id
+GET http://localhost:3001/api/user/60f0526346d75d76e4ec61cf
 
 
 ### add

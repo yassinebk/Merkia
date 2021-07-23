@@ -1,33 +1,62 @@
+/* eslint-disable max-len */
 const mongoose = require("mongoose");
 
 const ArticleSchema = new mongoose.Schema({
-  text: String,
-  title: String,
+  text: {
+    type: String,
+    validate: {
+      validator: (el) => (el !== ""),
+      message: "Article Should have body text",
+    },
+  },
+
+  title: {
+    type: String,
+    required: [true, "All articles should have a Title"],
+  },
+
   description: String,
   feature_img: String,
-  claps: {
+
+  likes: {
     type: Number,
     default: 0,
   },
+
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+
   comments: [
     {
       author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
       },
-      text: String,
+
+      text: {
+        type: String,
+
+        validate: {
+          validator: (el) => (el !== ""),
+          message: "Comments cannot be empty",
+        },
+
+      },
     },
   ],
+
+  created: {
+    type: Date,
+    required: [true, "ERROR: Date was not set by the server"],
+  },
 });
 
-ArticleSchema.methods.clap = function () {
+ArticleSchema.methods.like = function () {
   // eslint-disable-next-line no-plusplus
-  this.claps++;
-  return this.save;
+  this.likes++;
+  return this.save();
 };
 
 ArticleSchema.methods.comment = function (comment) {
@@ -41,7 +70,8 @@ ArticleSchema.methods.addAuthor = function (authorId) {
 };
 
 ArticleSchema.methods.getUserArticle = function (_id) {
-  ArticleSchema.find({ author: _id }).then((article) => article);
+  return (ArticleSchema.find({ author: _id })
+    .then((article) => article));
 };
 
 module.exports = mongoose.model("Article", ArticleSchema);

@@ -9,7 +9,8 @@ Content-Type: application/json
 {
     "title":"weeew",
     "text":"first article here! ",
-    "description":"one way or another"
+    "description":"one way or another",
+    "author":"60f0526346d75d76e4ec61cf"
 }
 
 ### comment
@@ -17,10 +18,30 @@ post http://localhost:3001/api/article/comment
 Content-Type: application/json
 
 {
-   "article_id":"60ef67d2c03ba7350d4ecf24",
-   "author_id":"44",
+   "article_id":"60fb2434ac02a2d5b4b0a0fb",
+   "author_id":"60f0526346d75d76e4ec61cf",
    "comment":"comments works" 
 }
 
 ### get article
-get http://localhost:3001/api/article/60ef67d2c03ba7350d4ecf24
+get http://localhost:3001/api/article/60fb2434ac02a2d5b4b0a0fb
+
+
+###Like an article 
+put http://localhost:3001/api/article/like
+Content-Type: application/json
+
+{
+    "id":"60fb2434ac02a2d5b4b0a0fb"
+}
+
+
+### commenting
+put http://localhost:3001/api/article/comment
+Content-Type: application/json
+
+{
+    "articleId":"60fb2434ac02a2d5b4b0a0fb",
+    "authorId":"60f0526346d75d76e4ec61cf",
+    "comment":"good job"
+}

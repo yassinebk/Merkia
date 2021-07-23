@@ -8,9 +8,10 @@ import Profile from './components/Profile.new'
 import Authenticate from './components/utils/requireAuth'
 import Header from './components/Header'
 import { Switch } from 'react-router-dom'
-import { connect } from 'react-redux'
-import RegForm from './components/RegForm'
+//import { connect } from 'react-redux'
+// import RegForm from './components/RegForm'
 import Landing from './components/Landing'
+import SignInWith from './components/SignInWith'
 function App (props) {
   const pathname = window.location.pathname
   console.log('pathname', pathname)
@@ -18,7 +19,7 @@ function App (props) {
     <React.Fragment className="App">
      {!pathname.includes('editor') ? <Header/> : null}
       {!props.isAuth
-        ? <RegForm/>
+        ? <SignInWith/>
         : <Switch>
     <Route exact path="/" component={Landing}/>
     <Route exact path="/profile/:id" component={Profile}/>
