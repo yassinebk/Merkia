@@ -1,29 +1,26 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-string-refs */
 
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import MediumEditor from 'medium-editor'
 import axios from 'axios'
 import EditorHeader from './EditorHeader'
 import './../../node_modules/medium-editor/dist/css/medium-editor.min.css'
-class Editor extends Component {
-  constructor () {
-    super()
-    this.state = {
-      title: '',
-      text: '',
-      description: '',
-      imgSrc: null,
-      loading: false
+
+const  Editor = ()=> {
+      const [title,setTitle] = useState('')
+      const [text,setText]= useState('');
+  const [description, setDesc] = useState('');
+      const [imgSrc,setImgSrc]= useState(null)
+      cosnt [loading,setLoading]=useState( false)
     }
     this.handleClick = this.handleClick.bind(this)
     this.previewImg = this.previewImg.bind(this)
     this.publishStory = this.publishStory.bind(this)
-  }
 
-  publishStory () {
-    this.setState({ loading: true })
+ function publishStory () {
+    setLoading(  true )
     const _url =
       process.env.NODE_ENV === 'production'
         ? '/api/'
@@ -38,23 +35,29 @@ class Editor extends Component {
     axios
       .post(`${_url}article`, formdata)
       .then((res) => {
-        this.setState({
-          loading: false
-        })
+        setLoading(false)
       })
       .catch((err) => {
-        console.log(err)
+        //console.log(err)
         this.setState({ loading: false })
       })
-  }
+  
+    }
 
-  handleClick () {
+  function handleClick () {
     this.refs.fileUploader.click()
   }
 
-  previewImg () {
+  function previewImg () {
     const file = this.refs.fileUploader.files[0]
     const reader = new FileReader()
+    reader.onloadStart = function (e) {
+      props.setNotif('loading',info)
+    }
+    reader.onProgress = function (e) {
+      props.setNotif('loading','info')
+    }
+
     reader.onload = function (e) {
       document.getElementById('image_preview').src = e.target.result
       this.setState({

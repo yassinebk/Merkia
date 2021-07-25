@@ -12,4 +12,4 @@ export const store = createStore(
 const browserHistory = createBrowserHistory()
 export const history = syncHistoryWithStore(browserHistory, store)
 
-console.log(history)
+//console.log(history)

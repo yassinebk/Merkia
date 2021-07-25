@@ -21,7 +21,9 @@ module.exports = {
       secondary_400: '#423B3B',
       bg: '#F5EEE9',
       contrast: '#E0762B',
-      fadedgray: 'rgba(81, 78, 78, 0.75)'
+      fadedgray: 'rgba(81, 78, 78, 0.75)',
+      red: "#E85F5C",
+...defaultTheme.colors
     },
     filter: {
       grad_light: 'linear-gradient(180deg, #F3ECE7 0%, #FAF8F8 100%)',
@@ -46,6 +48,8 @@ module.exports = {
     extend: {}
   },
   plugins: [
-    require('tailwindcss-debug-screens')
+    require('tailwindcss-debug-screens'),
+    require('daisyui'),
+
   ]
 }

@@ -44,6 +44,8 @@ const ArticleSchema = new mongoose.Schema({
         },
 
       },
+      date: String,
+
     },
   ],
 
@@ -59,7 +61,7 @@ ArticleSchema.methods.like = function () {
   return this.save();
 };
 
-ArticleSchema.methods.comment = function (comment) {
+ArticleSchema.methods.addComment = function (comment) {
   this.comments.push(comment);
   return this.save();
 };

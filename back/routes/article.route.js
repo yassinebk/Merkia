@@ -8,9 +8,9 @@ module.exports = (router) => {
 
   router.route("/article").post(multipartWare, articleController.addArticle);
 
-  router.route("/article/like").put(articleController.likeArticle);
+  router.route("/article/like").patch(articleController.likeArticle);
 
-  router.route("/article/comment").put(articleController.commentArticle);
+  router.route("/article/comment").patch(articleController.commentArticle);
 
   router.route("/article/:id").get(articleController.getArticle);
 };

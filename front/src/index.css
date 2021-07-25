@@ -42,7 +42,6 @@ p {
   @apply font-normal md:text-base;
 }
 
-
 /* Backgrounds */
 .btn-light {
   @apply p-2 bg-bg text-secondary_100 text-base font-bold p-2;
@@ -96,13 +95,18 @@ p {
     #f5eee9 100%
   );
 }
+
+.profile-username {
+  background: -webkit-linear-gradient(rgb(95, 86, 86), rgb(129, 104, 21));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .profile-section {
   mix-blend-mode: normal;
   border: 1px solid rgba(81, 78, 78, 0.2);
   box-sizing: border-box;
   filter: drop-shadow(4px 8px 20px #edd8ca);
 }
-
 
 .input-field {
   background: #f5eee9;
@@ -117,60 +121,78 @@ p {
   }
 }
 
-
 .ei {
-  height:10%;
+  max-height: 200px;
+  height: auto;
 }
 
 .ml-66 {
-  margin-left:100%;
+  margin-left: 100%;
   transform: translate(-110%);
 }
 
-
-button{
+button {
   align-items: center;
 }
 
-.horzCardFeed{
- max-width: 1127px ;
-  max-height:267px;
+.horzCardFeed {
+  max-width: 1127px;
+  max-height: 290px;
+  width: 80%;
 }
-.imgFeed{
-  max-height:250px;
-}
-
-.whiteCardsFeed{
- max-width:40%;
+.imgFeed {
+  max-height: 220px;
 }
 
-.profile-cards{
-  max-height:400px;
+.whiteCardsFeed {
+  max-width: 80%;
+}
+
+.profile-cards {
+  max-height: 400px;
   max-width: 600px;
 }
 
 .profile-horizontalCard {
-  max-width: 1000px
+  max-width: 1000px;
 }
 
 .h-90 {
-  height:90%;
+  height: 90%;
 }
 
-.input-max-height{
-  max-height:68px ;
+.input-max-height {
+  max-height: 68px;
 }
 
-.navbar-max-height{
-  max-height:300px
+.navbar-max-height {
+  max-height: 300px;
 }
 
 .landing-max-dimension {
-  max-height:auto;
+  max-height: auto;
 }
 
 @media only screen and (min-width: 1100px) {
- .landing-max-dimension{
-   max-height:600px;
- }
+  .landing-max-dimension {
+    max-height: 600px;
+  }
+}
+
+.link-fit {
+  width: fit-content;
+  height: fit-content;
+}
+
+:root {
+  -moz-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+  -webkit-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+  -moz-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+  -o-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+  transition: width 1s ease-in-out, left 1.5s ease-in-out !important;
+}
+
+.articleView-img {
+  max-height: 600px;
+  max-width:600px;
 }

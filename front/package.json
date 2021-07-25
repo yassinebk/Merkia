@@ -9,7 +9,9 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
-    "history": "^5.0.0",
+    "concurrently": "^6.2.0",
+    "daisyui": "^1.10.0",
+    "history": "^4.10.1",
     "medium-editor": "^5.23.3",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -28,8 +30,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "backend":"cd ../back && npm start",
-    "dev":"concurrently \"npm run backend\" \"npm run start\"",
+    "backend": "cd ../back && npm run dev",
+    "dev": "concurrently \"npm run backend\" \"npm run start\"",
     "start": "craco start",
     "build": "craco build",
     "pretest": "craco test",

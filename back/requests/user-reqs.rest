@@ -1,6 +1,8 @@
 ### getting a user 
 GET http://localhost:3001/api/user/60f0526346d75d76e4ec61cf
 
+### getting a user 
+GET http://localhost:3001/api/user/60fb7f553166754878f330bf
 
 ### add
 POST http://localhost:3001/api/user
@@ -8,5 +10,51 @@ Content-Type: application/json
 
 {
     "name":"Zero",
-    "email":"ZeroOne@gmail.com"
+    "email":"cyber@gmail.com",
+    "password":"great"
+}
+
+
+### 
+PATCH http://localhost:3001/api/user/follow
+Content-Type: application/json
+
+{
+   "id":"60f0526346d75d76e4ec61cf",
+   "user_id":"60fb7f553166754878f330bf",
+   "operation":"follow"
+    
+}
+
+###
+PATCH http://localhost:3001/api/user/follow
+Content-Type: application/json
+
+{
+   "id":"60f0526346d75d76e4ec61cf",
+   "user_id":"60fb7f553166754878f330bf",
+   "operation":"unfollow"
+    
+}
+
+
+###
+PATCH http://localhost:3001/api/user/bookmark
+Content-Type: application/json
+
+{
+   "id":"60f0526346d75d76e4ec61cf",
+   "articleId":"60fb7f553166754878f330bf",
+   "operation":"removeBookmark"
+    
+}
+
+
+### Login
+POST http://localhost:3001/api/login
+Content-Type: application/json 
+
+{
+    "email":"cyber@gmail.com",
+    "password":"great"
 }

@@ -8,9 +8,10 @@ module.exports = (router) => {
 
   router.route("/user").post(userController.addUser);
 
-  router.route("/user/follow").put(userController.followHandler);
+  router.route("/user/follow").patch(userController.followHandler);
 
-  router.route("/user/bookmark").put(userController.bookmarkHandler);
+  router.route("/user/bookmark").patch(userController.bookmarkHandler);
 
   router.route("/login").post(authController.login);
+  router.route("/google/auth").post(authController.googleAuth);
 };

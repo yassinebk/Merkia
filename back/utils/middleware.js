@@ -17,17 +17,25 @@ const errorHandler = (error, req, res, next) => {
 
   switch (error.name) {
     case "CastError":
-      console.log("here 2");
+      //console.log("here 2");
       return res.status(400).send({ error: "malformed ID" });
 
     case "ValidationError":
-      console.log("here 3");
+      //console.log("here 3");
       return res.status(400).json({ error: error.message });
     default:
       next(error);
   }
 };
 
+const tokenExtractor = (req, res, next) => {
+  const authorization = req.get("authorization");
+  if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
+    req.token = authorization.substring(7);
+  }
+  next();
+};
+
 module.exports = {
-  errorHandler, requestLogger, unknownEndpoint,
+  errorHandler, requestLogger, unknownEndpoint, tokenExtractor,
 };

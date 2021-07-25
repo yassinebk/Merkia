@@ -3,12 +3,19 @@ const mongooseUniqureValidator = require("mongoose-unique-validator");
 
 const UserSchema = mongoose.Schema({
   name: String,
+  username: {
+    type: String,
+    minLength: 3,
+    unique: [true, "Username already exists"],
+  },
   email:
   {
     type: String,
     required: [true, "Email is required"],
     unique: [true, "The email exists"],
+    minLength: 8,
   },
+
   password: String,
   provider: String,
   provider_id: String,
@@ -32,43 +39,68 @@ const UserSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Article",
   }],
+  comments: [
+    {
+      article: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Article",
+      },
+      comment: String,
+    },
+  ],
+  likes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Article",
+  }],
+
 });
 
-UserSchema.methods.follow = (userId) => {
-  if (this.following.indexOf(userId) === -1) this.following.push(userId);
-  return this.save();
+UserSchema.methods.follow = function (userId) {
+  this.following.push(userId);
+  return this;
 };
-
-UserSchema.methods.addFollower = (newFollower) => {
+UserSchema.methods.addFollower = function (newFollower) {
   this.followers.push(newFollower);
+  return this;
 };
 
-UserSchema.methods.bookmark = (ArticleId) => {
+UserSchema.methods.bookmark = function (ArticleId) {
   if (this.bookmarks.indexOf(ArticleId) === -1) this.bookmarks.push(ArticleId);
-  return this.save();
+  return this;
 };
 
-UserSchema.methods.unfollow = (followingID) => {
-  if (this.following.indexOf(followingID) === -1) throw new Error({ message: "follower doesn't exist" });
-  this.following = this.following.filter((follow) => follow !== followingID);
-  return this.save();
+UserSchema.methods.unfollow = function (followingID) {
+  this.following = this.following.filter((follow) => follow.toString() !== followingID);
+  return this;
 };
 
-UserSchema.methods.removeFollower = (userId) => {
-  if (this.following.indexOf(userId) === -1);
-  this.following = this.following.filter((follow) => follow !== userId);
-  return this.save();
+UserSchema.methods.removeFollower = function (userId) {
+  // console.log(typeof (userId));
+  this.followers = this.followers.filter((follow) => follow.toString() !== userId);
+  return this;
 };
 
-UserSchema.methods.removeBookmark = (ArticleId) => {
-  if (this.bookmarks.indexOf(ArticleId) === -1) throw new Error({ message: "bookmark doesn't exist" });
-  this.bookmarks = this.bookmarks.filter((bookmark) => bookmark !== ArticleId);
-  return this.save();
+UserSchema.methods.removeBookmark = function (ArticleId) {
+  this.bookmarks = this.bookmarks.filter((bookmark) => bookmark.toString() !== ArticleId);
+  return this;
 };
 
-UserSchema.methods.addArticle = (articleId) => {
+UserSchema.methods.addArticle = function (articleId) {
+  if (this.articles.indexOf(articleId) !== -1) throw new Error({ message: "Article does already exists" });
   this.articles.push(articleId);
-  return this.save();
+};
+UserSchema.methods.addLike = function (articleId) {
+  if (this.articles.indexOf(articleId) !== -1 || this.likes.indexOf(articleId) !== -1) throw new Error({ message: "like does already exists" });
+  this.likes.push(articleId);
+  this.save();
+};
+UserSchema.methods.removeLike = function (articleId) {
+  if (this.articles.indexOf(articleId) === -1 || this.likes.indexOf(articleId) === -1) throw new Error({ message: "like doesnt already exists" });
+  this.like.push(articleId);
+};
+UserSchema.methods.addComment = function (comment) {
+  this.comments.push(comment);
+  this.save();
 };
 
 mongoose.plugin(mongooseUniqureValidator);

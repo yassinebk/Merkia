@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import {useHistory} from"react-router"
+
 
 const Authenticate = (props) => {
-  console.log(props)
-  // eslint-disable-next-line react/prop-types
+const history =useHistory() 
+
+  //console.log('props',props)
   useEffect(() => {
-    // eslint-disable-next-line react/prop-types
-    if (!props.isAuth) history.push('/')
+    if (!props.isAuth)  history.push('/')
   }, [])
 
   return <props.Component {...props} />
