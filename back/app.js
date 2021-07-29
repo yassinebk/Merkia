@@ -20,7 +20,7 @@ cloudinary.config({
   api_secret: "9GAAmOit6qAIkHyvHOOx6esGgSM",
 });
 
-// console.log(`Connecting to MongoDB ${url}`);
+ logger.info(`Connecting to MongoDB ${url}`);
 try {
   mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 } catch (error) {
@@ -36,11 +36,12 @@ app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 app.use(middleware.tokenExtractor);
 app.use(middleware.requestLogger);
+app.use(express.static("build"));
 app.use(helmet());
 app.use("/api", router);
 app.use("*", middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
 app.listen(port, () => {
-  // console.log(`server is running at port : ${port}`);
+   console.log(`server is running at port : ${port}`);
 });

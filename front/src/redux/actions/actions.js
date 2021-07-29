@@ -1,13 +1,31 @@
 /* eslint-disable camelcase */
 import axios from 'axios'
-let id = 0;
+let id = 0
 
 const url =
-  process.env.NODE_ENV === 'production'
-    ? '`/api/'
-    : 'http://localhost:3001/api/'
+  process.env.NODE_ENV === 'production' ? '/api/' : 'http://localhost:3001/api/'
+
+/*Notifications */
+export function setNotif(message, type) {
+  return (dispatch) => {
+    console.log('here', type.toUpperCase())
+    dispatch({ type: type.toUpperCase(), message })
+    clearTimeout(id)
+    id = setTimeout(() => {
+      dispatch({ type: 'CLEAR' })
+    }, 5000)
+  }
+}
+function actionSetNotif(dispatch, type, message) {
+  dispatch({ type: type.toUpperCase(), message })
+  clearTimeout(id)
+  id = setTimeout(() => {
+    dispatch({ type: 'CLEAR' })
+  }, 5000)
+}
 
 /* Article */
+
 export function loadArticles() {
   return async (dispatch) => {
     try {
@@ -15,7 +33,7 @@ export function loadArticles() {
       const articles = res.data
       return dispatch({ type: 'LOAD_ARTICLES', articles })
     } catch (error) {
-      //console.log('error occured while loading Articles', error)
+      actionSetNotif(dispatch, 'error', error)
     }
   }
 }
@@ -29,7 +47,7 @@ export function getArticle(articleId) {
         const article = res.data
         dispatch({ type: 'VIEW_ARTICLE', article })
       })
-      .catch((err) => dispatch(setNotif(err,"error")))
+      .catch((err) => actionSetNotif(dispatch, 'error', err))
   }
 }
 
@@ -42,37 +60,34 @@ export function comment(articleId, author, comment) {
         comment,
       })
       .then((res) => {
-        const newDate= new Date()
+        const newDate = new Date()
         const newComment = {
-          text:comment,
-            author,
+          text: comment,
+          author,
           articleId,
-          date: newDate.toString()
+          date: newDate.toString(),
         }
         dispatch({ type: 'COMMENT_ARTICLE', newComment })
       })
   }
 }
 
-export function like(user_id,articleId) {
+export function like(user_id, articleId) {
   return (dispatch) => {
     axios
-      .patch(`${url}article/like`, {user_id ,id: articleId })
+      .patch(`${url}article/like`, { user_id, id: articleId })
       .then((res) => {
         dispatch({ type: 'LIKE_ARTICLE' })
       })
-      .catch((err) => dispatch(setNotif(err,"error")))
+      .catch((err) => actionSetNotif(dispatch, 'error', err))
   }
 }
 
 export function getUser(_id) {
-  return axios
-    .get(`${url}user/${_id}`)
-    .then((res) => {
-      //console.log('user',res) ;
-      return res.data
-    })
-    .catch((err) =>console.error(err))
+  return axios.get(`${url}user/${_id}`).then((res) => {
+    //console.log('user',res) ;
+    return res.data
+  })
 }
 
 export function addArticle(article) {
@@ -90,7 +105,7 @@ export function addArticle(article) {
         })
       })
       .catch((error) => {
-        dispatch(setNotif(error,"error"))
+        actionSetNotif(dispatch, 'error', error)
       })
   }
 }
@@ -104,47 +119,47 @@ export function getUserProfile(_id) {
         const profile = res.data
         dispatch({ type: 'SET_PROFILE', profile })
       })
-      .catch((err) => dispatch(setNotif(err,"error")))
+      .catch((err) => actionSetNotif(dispatch, 'error', err))
   }
 }
-export function follow(operation,id, user_id) {
+export function follow(operation, id, user_id) {
   return (dispatch) => {
-    if (operation === "follow") {
+    if (operation === 'follow') {
       axios
         .patch(`${url}user/follow`, { operation, id, user_id })
         .then((res) => {
           return dispatch({ type: 'FOLLOW_USER', user_id })
         })
-        .catch((err) => dispatch(setNotif(err,"error")))
-    }
-    else {
+        .catch((err) => actionSetNotif(dispatch, 'error', err))
+    } else {
       axios
         .patch(`${url}user/follow`, { operation, id, user_id })
         .then((res) => {
           return dispatch({ type: 'UNFOLLOW_USER', user_id })
         })
-        .catch((err) => dispatch(setNotif(err,"error")))
+        .catch((err) => actionSetNotif(dispatch, 'error', err))
     }
   }
-    
-  }
+}
 
-
-export function googleAuth(user_data) {
+export function googleAuth(user_data, message) {
   //console.log('here')
   return (dispatch) => {
     //console.log('google auth sending data', user_data)
     axios
       .post(`${url}google/auth`, user_data)
       .then((res) => {
-        const user = res.data;
+        const user = res.data
         //console.log('googleAuth',user)
         localStorage.setItem('Auth', JSON.stringify(user))
         //console.log(user)
+        console.log(message)
         dispatch({ type: 'SET_USER', user })
+        actionSetNotif(dispatch, 'success', message)
+
         //console.log('here')
       })
-      .catch((err) => dispatch(setNotif(err,"error")))
+      .catch((err) => actionSetNotif(dispatch, 'error', err))
   }
 }
 export function bookmark(operation, id, articleId) {
@@ -152,40 +167,48 @@ export function bookmark(operation, id, articleId) {
     axios
       .patch(`${url}user/bookmark`, { operation, id, articleId })
       .then((res) => {
-        if (operation === "bookmark")
+        if (operation === 'bookmark')
           dispatch({ type: 'BOOKMARK_ARTICLE', articleId })
         else dispatch({ type: 'UNBOOKMARK_ARTICLE', articleId })
-      }).catch(error => (dispatch(setNotif(error,"error")))
-      )
+      })
+      .catch((error) => dispatch(setNotif(error, 'error')))
   }
 }
 
-export function signUp(newUser) {
+export function signUp(newUser, message) {
   return (dispatch) => {
     //console.log('user to sign',newUser.values)
 
-    axios.post(`${url}user`,  newUser ).then((res) => {
-     const resUser = {
-        ...res.data.user,
-        token:res.data.token
-      }
-      localStorage.setItem('Auth', JSON.stringify(resUser))
-      dispatch({ type: 'SET_USER', user:resUser })
-    })
+    axios
+      .post(`${url}user`, newUser)
+      .then((res) => {
+        const resUser = {
+          ...res.data.user,
+          token: res.data.token,
+        }
+        localStorage.setItem('Auth', JSON.stringify(resUser))
+        dispatch({ type: 'SET_USER', user: resUser })
+        actionSetNotif(dispatch, 'success', message)
+      })
+      .catch((error) => actionSetNotif(dispatch, 'error', 'wrong Credentials'))
   }
 }
 
 export function login(user) {
   return (dispatch) => {
     //console.log(user)
-    axios.post(`${url}login`, user).then((res) => {
-      const resUser = {
-        ...res.data.user,
-        token:res.data.token
-      }
-      localStorage.setItem('Auth', JSON.stringify(resUser))
-      dispatch({ type: 'SET_USER', user:resUser } )
-    })
+    axios
+      .post(`${url}login`, user)
+      .then((res) => {
+        if (res.status === 404) dispatch(setNotif('wrong credentials', 'error'))
+        const resUser = {
+          ...res.data.user,
+          token: res.data.token,
+        }
+        localStorage.setItem('Auth', JSON.stringify(resUser))
+        dispatch({ type: 'SET_USER', user: resUser })
+      })
+      .catch((err) => actionSetNotif(dispatch, 'error', err))
   }
 }
 
@@ -202,16 +225,5 @@ export function toggleOpen() {
 }
 
 export function logout() {
-    return({type:"CLEAR_USER"})
-}
-
-export function setNotif(message, type) {
-  return dispatch => {
-
-    dispatch({ type:type.toUpperCase(), message})
-    clearTimeout(id)
-    id = setTimeout(() => {
-      dispatch({ type: "CLEAR" })
-    },6000)
-  }
+  return { type: 'CLEAR_USER' }
 }

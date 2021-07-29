@@ -19,28 +19,34 @@ function App(props) {
 
   return (
     <React.Fragment>
-      <Notification />(
+      <Notification />
       <Switch>
-        
         <Route path="/login" component={Login} />
         <Route path="/register">
           <RegForm />
         </Route>
         <Route path="/editor">
-          <Authenticate Component={Editor}/>
+          <Authenticate Component={Editor} />
         </Route>
-        <Route path="/about" >{props.isAuth ? <Landing /> : <a href="github.com" className="text-8xl">this page is not build yet</a>}</Route>
-       
-        <Route path="/profile/:id">
-          <Authenticate Component={Profile}/>
-        </Route>
- <Route path="/profile/">
-          <Authenticate Component={Profile}/>
+        <Route path="/about">
+          {props.isAuth ? (
+            <Landing />
+          ) : (
+            <a href="github.com" className="text-8xl">
+              this page is not build yet
+            </a>
+          )}
         </Route>
 
+        <Route path="/profile/:id">
+          <Authenticate Component={Profile} />
+        </Route>
+        <Route path="/profile/">
+          <Authenticate Component={Profile} />
+        </Route>
 
         <Route path="/article/:id">
-          <Authenticate Component={ArticleView}/>
+          <Authenticate Component={ArticleView} />
         </Route>
         <Route path="/">{props.isAuth ? <Feed /> : <Landing />}</Route>
       </Switch>

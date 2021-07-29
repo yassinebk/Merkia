@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.11cf4a55.chunk.css",
+    "main.js": "/static/js/main.efe6f85a.chunk.js",
+    "main.js.map": "/static/js/main.efe6f85a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f60eeeb5.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f60eeeb5.js.map",
+    "static/js/2.5b2f6164.chunk.js": "/static/js/2.5b2f6164.chunk.js",
+    "static/js/2.5b2f6164.chunk.js.map": "/static/js/2.5b2f6164.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.11cf4a55.chunk.css.map": "/static/css/main.11cf4a55.chunk.css.map",
+    "static/js/2.5b2f6164.chunk.js.LICENSE.txt": "/static/js/2.5b2f6164.chunk.js.LICENSE.txt",
+    "static/media/FHnnjk1Yj7Y.2503f797.png": "/static/media/FHnnjk1Yj7Y.2503f797.png",
+    "static/media/Property 1=Minimal.d6fbaa75.svg": "/static/media/Property 1=Minimal.d6fbaa75.svg",
+    "static/media/christian-wiediger-70ku6P7kgmc-unsplash.f7fa9ddf.jpg": "/static/media/christian-wiediger-70ku6P7kgmc-unsplash.f7fa9ddf.jpg",
+    "static/media/e3OUQGT9bWU.94db248b.png": "/static/media/e3OUQGT9bWU.94db248b.png",
+    "static/media/index.css": "/static/media/landing-bg.6513f494.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f60eeeb5.js",
+    "static/js/2.5b2f6164.chunk.js",
+    "static/css/main.11cf4a55.chunk.css",
+    "static/js/main.efe6f85a.chunk.js"
+  ]
+}

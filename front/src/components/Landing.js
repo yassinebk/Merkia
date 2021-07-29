@@ -7,7 +7,8 @@ import friendsImg from '../assets/Desktop/e3OUQGT9bWU.png'
 import Footer from './Basic/Footer'
 import Container from './Basic/Atomic/Container'
 import Button from './Basic/Atomic/Button'
-import {Link } from"react-router-dom"
+import Notification from './Notification.js'
+import { Link } from 'react-router-dom'
 
 const Landing = () => {
   const card = 'w-full mb-16 p-8 flex flex-col shadow-xl space-y-8 '
@@ -16,6 +17,7 @@ const Landing = () => {
   const cardTitle = 'text-2xl font-bold'
   return (
     <Container className="  h-screen w-screen ">
+      <Notification />
       <Navbar />
       <div className="   flex flex-col  flex-nowrap items-center justify-around mt-24 md:mt-48 px-2 w-full py-4  ">
         <div
@@ -26,14 +28,14 @@ const Landing = () => {
           }
         >
           <div className="  lg:col-start-1 lg:col-end-2  px-2 h-2/6 w-full lg:w-auto  lg:m-auto  ">
-            <img alt="hero-img"src={hero} className="py-8 w-full" />
+            <img alt="hero-img" src={hero} className="py-8 w-full" />
           </div>
 
           <div className="flex flex-col   items-center justify-center lg:col-start-2 lg:col-end-3 w-full h-auto space-y-4 m-4 mr-48 lg:space-y-24">
-            <h1 className=" text-5xl font-bold lg:text-7xl lg:text-left">
+            <h1 className=" text-5xl text-secondary_100 font-bold lg:text-7xl lg:text-left">
               Welcome to <span className="text-primary_100"> Merkia !</span>
             </h1>
-            <p className=" lg:pl-4 text-3xl text-center font-semibold lg:text-left lg:text-5xl lg:font-normal">
+            <p className=" lg:pl-4 text-3xl text-center text-seconday_100 font-semibold lg:text-left lg:text-5xl lg:font-normal">
               Sharing you stories has never been easier
             </p>
           </div>
@@ -43,15 +45,17 @@ const Landing = () => {
               variant="primary"
               classes=" w-1/3 md:w-1/4 m-auto lg:w-1/3 "
             >
-              <Link to="/register" className="w-full h-full">Get Started</Link>
+              <Link to="/register" className="w-full h-full">
+                Get Started
+              </Link>
             </Button>
             <Button
               variant="secondary"
               classes="  m-auto w-1/3 md:w-1/4 lg:w-1/3 "
             >
-      <a href="github" className="w-full h-full" >
-              Find Out More
-</a>
+              <a href="github" className="w-full h-full">
+                Find Out More
+              </a>
               <Link to="/features" />
             </Button>
           </div>
@@ -77,7 +81,11 @@ const Landing = () => {
                   </p>
                 </li>
                 <li className={card}>
-                  <img alt="robust-img" src={robustImg} className={cardImages} />
+                  <img
+                    alt="robust-img"
+                    src={robustImg}
+                    className={cardImages}
+                  />
                   <h3 className={cardTitle}> A robust Writing Experience</h3>
                   <p className={cardText}>
                     A simple editor with an intuitive interface to meet all your
@@ -85,7 +93,11 @@ const Landing = () => {
                   </p>
                 </li>
                 <li className={card}>
-                  <img alt="friends-img"src={friendsImg} className={cardImages}/>
+                  <img
+                    alt="friends-img"
+                    src={friendsImg}
+                    className={cardImages}
+                  />
                   <h3 className={cardTitle}>Chat With your friends Now !</h3>
                   <p className={cardText}>
                     Likes , Comments , Follow and send direct messages , spread
@@ -94,14 +106,13 @@ const Landing = () => {
                 </li>
               </ul>
             </div>
-      <a href="Docs">
-            <Button
-              variant="outlined"
-              classes=" border-1 border-secondary_100 hover:border-2  my-4 h-24 text-3xl text-black mb-12 "
-              text="Read our Docs"
-                      >
-            </Button>
-</a>
+            <a href="Docs">
+              <Button
+                variant="outlined"
+                classes=" border-1 border-secondary_100 hover:border-2  my-4 h-24 text-3xl text-black mb-12 "
+                text="Read our Docs"
+              ></Button>
+            </a>
             <Footer />
           </div>
         </div>

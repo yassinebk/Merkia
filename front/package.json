@@ -72,6 +72,7 @@
     "prettier": "^2.3.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.4",
     "tailwindcss-debug-screens": "^2.0.0"
+
   },
   "prettier": "@imaginary-cloud/prettier-config"
 }

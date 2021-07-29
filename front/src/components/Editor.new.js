@@ -51,11 +51,11 @@ const Editor = (props) => {
     title.reset()
     text.reset()
     description.reset()
-    history.push('/')
     props.setNotif(
       'You added a new Article you check it on your profile !! ',
       'success',
     )
+    history.push('/')
   }
   return (
     <Container>
@@ -74,7 +74,6 @@ const Editor = (props) => {
         <div className="  w-full space-y-6 flex flex-col justify-evenly h-full items-stretch align-start content-start ">
           <Input
             name="Title"
-
             inputClass=" medium-editable w-full h-full text-2xl p-8 text-black"
             labelClass="text-4xl mr-10 text-shadow "
             containerClass="h-52 w-2/3 self-center"
@@ -105,7 +104,13 @@ const Editor = (props) => {
               name="photo"
               onChange={onChangeFile}
             />
-            {imgSrc && <img src={imgSrc} alt="chosen" />}
+            {imgSrc && (
+              <img
+                src={imgSrc}
+                className="h-48 w-48 rounded-xl shadow-md"
+                alt="chosen"
+              />
+            )}
           </div>
         </div>
         <div className="row-start-6 row-end-7 flex flex-row justify-evenly align-center col-start-1 col-end-13 w-full mt-2 md:mt-0 md:justify-start md:space-x-4 ">
