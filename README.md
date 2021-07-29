@@ -1,4 +1,4 @@
-# Welcome to MERKIA , my first full designed website 
+# Welcome to MERKIA , my first fully designed website 
 
 ## This project was aimed to put in test my design skills as my coding one , everything was done from scratch . 
 
